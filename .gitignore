@@ -12,3 +12,4 @@ __pycache__/
 
 # Ignore environment variables (API keys)
 .env
+.python-version
