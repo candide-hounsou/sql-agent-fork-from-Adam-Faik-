@@ -6,13 +6,9 @@ schema.txt
 # Ignore Python cache
 __pycache__/
 *.pyc
-.python-version
 
 # Ignore Mac system files
 *.DS_Store
 
 # Ignore environment variables (API keys)
 .env
-
-# Misc
-.sixth
