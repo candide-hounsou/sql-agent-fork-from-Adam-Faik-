@@ -1,6 +1,6 @@
 import os
 
-from src.agent.graph import create_graph  # noqa: F401 – re-exported
+from src.agent.graph import create_graph as _create_graph  # noqa: F401
 
 
 def _require_openai_credentials() -> None:
@@ -12,6 +12,10 @@ def _require_openai_credentials() -> None:
     )
 
 
-_require_openai_credentials()
+def create_graph():
+    """Create the compiled LangGraph agent. Validates credentials at call time."""
+    _require_openai_credentials()
+    return _create_graph()
+
 
 __all__ = ["create_graph"]
