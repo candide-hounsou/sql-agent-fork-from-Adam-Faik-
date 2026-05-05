@@ -1,25 +1,27 @@
-[tool.poetry]
+[project]
 name = "sql-agent"
 version = "0.1.0"
-package-mode = false
 description = "sql agent trial"
 authors = [
-    "Your Name <you@example.com>"
+    { name = "Your Name", email = "you@example.com" }
 ]
 license = "MIT"
 readme = "README.md"
+requires-python = ">=3.11,<4.0.0"
+dependencies = [
+    "streamlit==1.51.0",
+    "pandas==2.3.1",
+    "plotly==6.3.1",
+    "python-dotenv==1.1.1",
+    "langchain-core==1.2.18",
+    "langchain-openai==1.1.11",
+    "langgraph==1.1.0",
+    "pydantic==2.11.9",
+    "sqlparse==0.5.3",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.11,<4.0.0"
-streamlit = "1.51.0"
-pandas = "2.3.1"
-plotly = "6.3.1"
-python-dotenv = "1.1.1"
-langchain-core = "1.2.18"
-langchain-openai = "1.1.11"
-langgraph = "1.1.0"
-pydantic = "2.11.9"
-sqlparse = "0.5.3"
+[tool.poetry]
+package-mode = false
 
 
 [build-system]
