@@ -1,4 +1,5 @@
-# 🤖 Text-to-SQL multi-agent architecture evaluation
+# 🤖 Text-to-SQL multi-agent architecture evaluation (Forked from Adam FAIK's project (https://github.com/adamfaik/sql-agent) and modified for training purposes by me.
+Give credits to the originator !
 
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
