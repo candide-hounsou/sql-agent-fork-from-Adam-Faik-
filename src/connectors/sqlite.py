@@ -1,5 +1,5 @@
 import sqlite3
-from typing import Any, List, Optional, Tuple
+from typing import List, Optional, Tuple
 
 from .base import DatabaseConnector
 

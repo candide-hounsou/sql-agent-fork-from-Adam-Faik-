@@ -2,8 +2,6 @@
 
 import os
 import pickle
-import pytest
-
 
 SAMPLE_SCHEMA = """\
 CREATE TABLE customers (

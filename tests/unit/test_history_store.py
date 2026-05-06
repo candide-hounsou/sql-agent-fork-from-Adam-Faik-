@@ -1,7 +1,7 @@
 """Unit tests for src/storage/history.py (Phase 8 — persistent sessions)."""
 
 import os
-import json
+
 import pytest
 
 
@@ -26,8 +26,9 @@ class TestSessionHistory:
         assert s.name == "My Test Session"
 
     def test_new_has_iso_timestamp(self):
-        from src.storage.history import SessionHistory
         from datetime import datetime
+
+        from src.storage.history import SessionHistory
 
         s = SessionHistory.new()
         # Should parse without raising
@@ -80,6 +81,7 @@ class TestHistoryStore:
 
     def test_list_sessions_sorted_newest_first(self, store):
         import time
+
         from src.storage.history import SessionHistory
 
         s1 = SessionHistory.new(name="First")
@@ -118,7 +120,7 @@ class TestHistoryStore:
 
     def test_concurrent_writes_do_not_corrupt(self, store, tmp_path):
         """Write multiple sessions from different HistoryStore instances."""
-        from src.storage.history import SessionHistory, HistoryStore
+        from src.storage.history import HistoryStore, SessionHistory
 
         path = str(tmp_path / "history.json")
         stores = [HistoryStore(store_path=path) for _ in range(5)]

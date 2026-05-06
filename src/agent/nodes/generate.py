@@ -1,11 +1,11 @@
-from langchain_core.messages import SystemMessage, HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables.config import RunnableConfig
 
 from src.agent.state import AgentState
-from src.prompts.system_prompts import GENERATE_SYSTEM_PROMPT
-from src.prompts.few_shot import FEW_SHOT_EXAMPLES
-from src.schema.loader import get_schema, get_schema_for_query
 from src.llm.factory import get_llm
+from src.prompts.few_shot import FEW_SHOT_EXAMPLES
+from src.prompts.system_prompts import GENERATE_SYSTEM_PROMPT
+from src.schema.loader import get_schema_for_query
 
 
 def generate_sql(state: AgentState, config: RunnableConfig) -> dict:

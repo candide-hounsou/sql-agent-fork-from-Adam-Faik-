@@ -1,10 +1,10 @@
-from langchain_core.messages import SystemMessage, HumanMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.runnables.config import RunnableConfig
 
 from src.agent.state import AgentState
+from src.llm.factory import get_llm
 from src.prompts.system_prompts import PLAN_SYSTEM_PROMPT
 from src.schema.loader import get_schema_for_query
-from src.llm.factory import get_llm
 
 
 def plan_sql_query(state: AgentState, config: RunnableConfig) -> dict:

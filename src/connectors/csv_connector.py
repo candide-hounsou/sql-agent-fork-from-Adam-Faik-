@@ -2,7 +2,7 @@
 
 import io
 import sqlite3
-from typing import Any, IO, List, Tuple, Union
+from typing import IO, Any, List, Tuple, Union
 
 from src.connectors.base import DatabaseConnector
 

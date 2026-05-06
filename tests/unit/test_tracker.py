@@ -1,7 +1,7 @@
 """Unit tests for src/llm/tracker.py — cost calculation and token tracking."""
 
-import pytest
 from unittest.mock import MagicMock
+
 from langchain_core.outputs import LLMResult
 
 
@@ -33,7 +33,7 @@ class TestGetSessionCost:
         assert expensive > cheap
 
     def test_all_listed_models_have_positive_cost(self):
-        from src.llm.tracker import get_session_cost, MODEL_PRICING
+        from src.llm.tracker import MODEL_PRICING, get_session_cost
 
         for model in MODEL_PRICING:
             cost = get_session_cost(100, 100, model)

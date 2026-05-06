@@ -1,5 +1,5 @@
 """Unit tests for the execute_sql security guardrail and connector integration."""
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 from src.agent.nodes.execute import execute_sql
 from src.connectors.base import DatabaseConnector

@@ -1,8 +1,8 @@
 """Unit tests for database connectors (Phase 5)."""
 
 import io
+
 import pytest
-from unittest.mock import MagicMock, patch
 
 
 class TestSQLiteConnector:
@@ -86,8 +86,8 @@ class TestConnectorFactory:
         assert isinstance(connector, SQLiteConnector)
 
     def test_csv_returns_csv_connector(self):
-        from src.connectors.factory import get_connector
         from src.connectors.csv_connector import CSVConnector
+        from src.connectors.factory import get_connector
 
         csv_bytes = b"col1,col2\n1,2\n"
         connector = get_connector("csv", csv_source=csv_bytes)

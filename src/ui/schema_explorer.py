@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 
 def render_schema_panel(connector=None) -> None:
     """Render an expandable sidebar panel showing tables, columns, and sample values.

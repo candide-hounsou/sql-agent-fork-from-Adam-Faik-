@@ -1,8 +1,8 @@
 """Unit tests for the multi-provider LLM factory (Phase 4)."""
 
-import os
-import pytest
 from unittest.mock import MagicMock, patch
+
+import pytest
 
 
 class TestProviderModels:
@@ -35,6 +35,7 @@ class TestGetLlm:
         mock_class = MagicMock(return_value=mock_llm)
         with patch.dict("sys.modules", {"langchain_openai": MagicMock(ChatOpenAI=mock_class)}):
             from importlib import reload
+
             import src.llm.factory as factory_mod
             reload(factory_mod)
             result = factory_mod.get_llm(provider="openai", model_name="gpt-4o-mini")
@@ -51,6 +52,7 @@ class TestGetLlm:
         mock_class = MagicMock(return_value=mock_llm)
         with patch.dict("sys.modules", {"langchain_openai": MagicMock(ChatOpenAI=mock_class)}):
             from importlib import reload
+
             import src.llm.factory as factory_mod
             reload(factory_mod)
             factory_mod.get_llm(provider="openai", model_name=None)

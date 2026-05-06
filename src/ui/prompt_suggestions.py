@@ -23,7 +23,7 @@ def generate_suggestions(schema_summary: str, llm) -> List[str]:
     List[str]
         A list of 5–8 natural-language questions the user could ask.
     """
-    from langchain_core.messages import SystemMessage, HumanMessage
+    from langchain_core.messages import HumanMessage, SystemMessage
 
     system_prompt = (
         "You are a helpful data analyst onboarding a new user to a SQL database. "
