@@ -40,3 +40,12 @@ jobs:
             --tb=short \
             --cov=src \
             --cov-report=term-missing
+
+  docker-build:
+    name: Docker Build Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build -t sql-agent:ci-check .
+
