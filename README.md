@@ -1,7 +1,7 @@
 # 🤖 Text-to-SQL multi-agent architecture evaluation (Forked from Adam FAIK's project (https://github.com/adamfaik/sql-agent) and modified for training purposes by me.
 Give credits to the originator !
 
-![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangGraph-1C3C3C?logo=langchain&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white)
@@ -16,7 +16,7 @@ The core objective is to evaluate how advanced prompt engineering techniques—s
 
 | Feature | Description |
 |---------|-------------|
-| 🧠 Multi-LLM | OpenAI, Anthropic Claude, Google Gemini — switchable from sidebar |
+| 🧠 Multi-LLM | OpenAI (`gpt-4o-mini`, `gpt-4o`, `gpt-3.5-turbo`), Anthropic Claude (`claude-3-5-haiku`, `claude-sonnet-4-5`), Google Gemini (`gemini-2.0-flash`, `gemini-2.5-pro`) — switchable from sidebar |
 | 🔍 RAG Schema Linking | TF-IDF retrieval injects only relevant schema tables into prompts |
 | 🗄️ Multi-Database | Connect SQLite files, CSV uploads, PostgreSQL, or MySQL |
 | 💾 LLM Caching | SQLite-backed response cache; toggleable from sidebar |
@@ -25,6 +25,8 @@ The core objective is to evaluate how advanced prompt engineering techniques—s
 | 💡 Smart Suggestions | 5+ clickable example questions generated on first load |
 | 📜 Persistent Sessions | Save, load, rename, and delete named chat sessions |
 | 📊 Export | Download data as CSV, chart as PNG, or full session as PDF |
+| 🔒 Security Guardrail | Only `SELECT` statements are allowed; `INSERT`/`UPDATE`/`DELETE` are blocked |
+| ⏱️ Query Timeout | Hard 5-second execution timeout prevents runaway queries (thread-based interrupt for SQLite; server-side for PostgreSQL/MySQL) |
 | 🐳 Docker | One-command deployment with `docker compose up` |
 
 ## 🏗️ Architecture
@@ -133,8 +135,10 @@ pip install -r requirements.txt
 ```bash
 cp .env.example .env
 # Edit .env and set OPENAI_API_KEY (minimum)
-# For Anthropic: ANTHROPIC_API_KEY
-# For Google Gemini: GOOGLE_API_KEY
+# For Anthropic: ANTHROPIC_API_KEY  → pip install langchain-anthropic
+# For Google Gemini: GOOGLE_API_KEY → pip install langchain-google-genai
+# For PostgreSQL: pip install psycopg2-binary
+# For MySQL:      pip install mysql-connector-python
 ```
 
 **5. Initialize the database**
