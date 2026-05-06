@@ -16,6 +16,15 @@ def _parse_table_blocks(schema_text: str) -> List[str]:
     return [b.strip() for b in blocks if b.strip()]
 
 
+def _normalize(text: str) -> str:
+    """Replace underscores with spaces and lower-case for TF-IDF matching.
+
+    Schema identifiers such as ``customer_city`` become ``customer city``
+    so that natural-language queries like "customers by city" match correctly.
+    """
+    return re.sub(r"_", " ", text).lower()
+
+
 def build_schema_index(schema_text: str, index_path: str = "data/schema_index") -> None:
     """Build a TF-IDF index from schema table blocks and persist it to disk.
 
@@ -31,8 +40,10 @@ def build_schema_index(schema_text: str, index_path: str = "data/schema_index") 
         print("⚠️  No CREATE TABLE blocks found in schema — index not built.")
         return
 
-    vectorizer = TfidfVectorizer(stop_words="english")
-    matrix = vectorizer.fit_transform(blocks)
+    normalized_blocks = [_normalize(b) for b in blocks]
+
+    vectorizer = TfidfVectorizer()
+    matrix = vectorizer.fit_transform(normalized_blocks)
 
     index_data = {
         "blocks": blocks,
@@ -73,7 +84,7 @@ def retrieve_relevant_schema(
     vectorizer: TfidfVectorizer = index_data["vectorizer"]
     matrix = index_data["matrix"]
 
-    query_vec = vectorizer.transform([query])
+    query_vec = vectorizer.transform([_normalize(query)])
     scores = cosine_similarity(query_vec, matrix).flatten()
 
     k = min(top_k, len(blocks))
