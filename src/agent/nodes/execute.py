@@ -162,7 +162,7 @@ def execute_sql(state: AgentState, config: RunnableConfig) -> dict:
 
     except TimeoutError:
         error_msg = (
-            f"Query Error: Execution timed out after {TIMEOUT_SECONDS:.0f} seconds. "
+            f"Timeout Error: Execution timed out after {TIMEOUT_SECONDS:.0f} seconds. "
             "Your query is too slow. Check for missing ON clauses in your JOINs "
             "(Cartesian products)."
         )

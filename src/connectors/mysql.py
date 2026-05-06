@@ -52,7 +52,7 @@ class MySQLConnector(DatabaseConnector):
             self.connect()
         cursor = self._conn.cursor()
         if self.query_timeout_ms is not None:
-            cursor.execute(f"SET SESSION max_execution_time = {int(self.query_timeout_ms)}")
+            cursor.execute("SET SESSION max_execution_time = %s", (int(self.query_timeout_ms),))
         cursor.execute(sql)
         rows = cursor.fetchmany(100)
         cols = [desc[0] for desc in cursor.description]

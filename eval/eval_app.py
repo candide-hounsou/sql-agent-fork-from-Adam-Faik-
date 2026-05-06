@@ -8,14 +8,14 @@ import os
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.abspath(os.path.join(current_dir, '..'))
 sys.path.append(parent_dir)
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from agent import create_graph
 from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
+from src.llm.factory import PROVIDER_MODELS, LLMProvider
 import uuid
 import time
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # --- Pydantic Model for the Judge ---
 class JudgeOutput(BaseModel):
@@ -29,8 +29,6 @@ st.title("🧪 LLM Text-to-SQL Evaluation Dashboard")
 # --- EXPERIMENT SETTINGS SIDEBAR ---
 st.sidebar.header("⚙️ Experiment Settings")
 st.sidebar.markdown("Configure the ablation study parameters:")
-
-from src.llm.factory import PROVIDER_MODELS, LLMProvider
 
 _PROVIDER_LABELS = {
     "OpenAI": LLMProvider.OPENAI,
